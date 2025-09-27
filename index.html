@@ -1,284 +1,458 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZNMP.UK – Technology & Cool Stuff</title>
-  <meta name="description" content="ZNMP.UK – technology, tools, and cool things.">
-  
-  <!-- AdSense script -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZNMP.UK — 100 Tools for Tech & Useful Stuff</title>
+  <meta name="description" content="ZNMP.UK: 100 free browser tools — JSON, Base64, QR, converters, generators, calculators, text tools and more." />
+  <meta property="og:title" content="ZNMP.UK — 100 Tools" />
+  <meta property="og:description" content="100 free browser tools for developers, creators and everyone — no signup." />
+  <meta property="og:url" content="https://znmp.uk" />
+  <meta name="theme-color" content="#071129" />
+
+  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5061269155394927"
      crossorigin="anonymous"></script>
 
   <style>
-    :root {
-      --bg: #0a0f1f;
-      --card: #131a2c;
-      --accent: #00e5ff;
-      --text: #e6f1ff;
-      --muted: #9aa7c0;
-      --radius: 14px;
+    :root{
+      --bg:#06102a; --card:#0e1624; --muted:#9fb1cc; --accent:#00d1ff; --glass:rgba(255,255,255,0.03);
+      --radius:12px; --maxw:1200px;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 28px;
-      background: var(--card);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    nav a {
-      margin-left: 16px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(180deg, #0a0f1f, #131a2c);
-    }
-    .hero h1 { font-size: 36px; margin-bottom: 12px; }
-    .hero p { color: var(--muted); font-size: 18px; }
-    .btn {
-      margin-top: 10px;
-      background: var(--accent);
-      color: #000;
-      padding: 10px 18px;
-      border-radius: var(--radius);
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-      border: none;
-    }
-    .content {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    }
-    .card h2 { margin-top: 0; }
-    .ads {
-      margin: 20px 0;
-      text-align: center;
-    }
-    textarea, input {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border-radius: 8px;
-      border: none;
-      background: #1c2238;
-      color: var(--text);
-    }
-    .output {
-      padding: 10px;
-      background: #1c2238;
-      border-radius: 8px;
-      word-wrap: break-word;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: var(--muted);
-      background: var(--card);
-    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,var(--bg),#021022);color:#e8f3ff}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:18px}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#07162a,#0b2540);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;color:var(--accent)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+    nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+    .btn{background:var(--glass);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);cursor:pointer;color:var(--muted);font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#6ef0ff);color:#041024}
+
+    main{margin-top:20px}
+    .hero{display:flex;gap:18px;align-items:center}
+    .hero .left{flex:1}
+    .hero h2{margin:0 0 6px 0;font-size:26px}
+    .hero p{margin:0;color:var(--muted)}
+
+    /* grid */
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:14px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    .card h3{margin:0 0 8px 0;font-size:16px}
+    .input, textarea, select {width:100%;padding:8px;border-radius:8px;border:none;background:#0b1626;color:inherit;margin:6px 0}
+    textarea{min-height:80px;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .out{margin-top:10px;background:#081424;padding:10px;border-radius:8px;white-space:pre-wrap;font-family:monospace;font-size:13px;min-height:26px}
+    footer{margin-top:24px;color:var(--muted);text-align:center;font-size:13px}
+
+    /* ad responsive container */
+    .ad-row{text-align:center;margin:16px 0}
+    @media(max-width:640px){.hero h2{font-size:20px}.logo{width:48px;height:48px}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">ZNMP.UK</div>
-    <nav>
-      <a href="#tools">Tools</a>
-      <a href="#fun">Fun</a>
-      <a href="#subscribe">Subscribe</a>
-    </nav>
-  </header>
+  <div class="wrap">
+    <header>
+      <div class="logo">Z</div>
+      <div>
+        <h1>ZNMP.UK</h1>
+        <p class="lead">100 browser tools — text, numbers, dates, encoders, converters, generators and more.</p>
+      </div>
+      <nav>
+        <button class="btn" id="copyAll">Copy All Tools HTML</button>
+        <a class="btn primary" href="#tools">Open Tools</a>
+      </nav>
+    </header>
 
-  <section class="hero">
-    <h1>Welcome to ZNMP.UK</h1>
-    <p>Technology, tools, and cool things you can actually use.</p>
-  </section>
+    <main>
+      <section class="hero">
+        <div class="left">
+          <h2>Tools for everyday tech work</h2>
+          <p>All tools run fully in your browser. No sign-up. Use responsibly. Replace AdSense slots with yours if needed.</p>
+        </div>
+        <div style="width:320px">
+          <div class="card" style="padding:12px">
+            <strong>Quick actions</strong>
+            <div style="margin-top:8px" class="small">Use the buttons inside tool cards. Many outputs include a copy button.</div>
+          </div>
+        </div>
+      </section>
 
-  <div class="content" id="tools">
-    <!-- Ad block -->
-    <div class="ads">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5061269155394927"
-           data-ad-slot="1234567890"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+      <div class="ad-row">
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-5061269155394927"
+             data-ad-slot="1234567890"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      </div>
 
-    <!-- JSON Formatter -->
-    <div class="card">
-      <h2>JSON Formatter</h2>
-      <textarea id="jsonInput" placeholder="Paste JSON here..."></textarea>
-      <button class="btn" onclick="formatJSON()">Format</button>
-      <pre class="output" id="jsonOutput"></pre>
-    </div>
+      <section id="tools" class="tools-grid" aria-live="polite"></section>
 
-    <!-- Base64 -->
-    <div class="card">
-      <h2>Base64 Encoder / Decoder</h2>
-      <textarea id="b64Input" placeholder="Enter text..."></textarea>
-      <button class="btn" onclick="encodeB64()">Encode</button>
-      <button class="btn" onclick="decodeB64()">Decode</button>
-      <div class="output" id="b64Output"></div>
-    </div>
+      <div class="ad-row">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5061269155394927"
+             data-ad-slot="0987654321"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      </div>
 
-    <!-- QR Code -->
-    <div class="card">
-      <h2>QR Code Generator</h2>
-      <input id="qrInput" placeholder="Enter text or URL...">
-      <button class="btn" onclick="makeQR()">Generate</button>
-      <div id="qrOutput" style="margin-top:10px;"></div>
-    </div>
-
-    <!-- Random Password -->
-    <div class="card" id="fun">
-      <h2>Random Password Generator</h2>
-      <button class="btn" onclick="genPassword()">Generate Password</button>
-      <div class="output" id="pwdOutput"></div>
-    </div>
-
-    <!-- Unit Converter -->
-    <div class="card">
-      <h2>Unit Converter (cm ⇆ inch)</h2>
-      <input id="cmInput" placeholder="Enter cm">
-      <button class="btn" onclick="toInch()">Convert to Inch</button>
-      <input id="inchInput" placeholder="Enter inch">
-      <button class="btn" onclick="toCm()">Convert to cm</button>
-      <div class="output" id="convOutput"></div>
-    </div>
-
-    <!-- Simple Calculator -->
-    <div class="card">
-      <h2>Calculator</h2>
-      <input id="calcExp" placeholder="Enter expression e.g. (5+3)*2">
-      <button class="btn" onclick="calc()">Calculate</button>
-      <div class="output" id="calcOutput"></div>
-    </div>
-
-    <!-- Second Ad block -->
-    <div class="ads">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5061269155394927"
-           data-ad-slot="0987654321"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <!-- Subscribe -->
-    <div class="card" id="subscribe">
-      <h2>Subscribe</h2>
-      <p>Stay updated with the latest technology and cool stuff. Enter your email:</p>
-      <input type="email" id="email" placeholder="Your email">
-      <button class="btn" onclick="subscribe()">Subscribe</button>
-      <p id="msg" style="color:var(--accent);margin-top:10px;"></p>
-    </div>
+      <footer>
+        © 2025 ZNMP.UK — All rights reserved.
+      </footer>
+    </main>
   </div>
 
-  <footer>
-    © 2025 ZNMP.UK — All rights reserved.
-  </footer>
-
+  <!-- QR library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
   <script>
-    // JSON formatter
-    function formatJSON() {
-      try {
-        const obj = JSON.parse(document.getElementById('jsonInput').value);
-        document.getElementById('jsonOutput').textContent = JSON.stringify(obj, null, 2);
-      } catch {
-        document.getElementById('jsonOutput').textContent = "Invalid JSON!";
+  // TOOL CONFIG: list of 100 tools. Each entry: id, title, description, fields array {id,placeholder,type}, button labels, handler name
+  const tools = [
+    // 1-10 Text utilities
+    {id:'t1', title:'JSON: Prettify', desc:'Format JSON', fields:[{id:'in','placeholder':'Paste JSON...','type':'textarea'}], btns:['Format'], handler:'jsonPretty'},
+    {id:'t2', title:'JSON: Minify', desc:'Remove whitespace', fields:[{id:'in','placeholder':'Paste JSON...','type':'textarea'}], btns:['Minify'], handler:'jsonMinify'},
+    {id:'t3', title:'Base64 Encode', desc:'Encode text to Base64', fields:[{id:'in','placeholder':'Text...','type':'text'}], btns:['Encode'], handler:'b64enc'},
+    {id:'t4', title:'Base64 Decode', desc:'Decode Base64', fields:[{id:'in','placeholder':'Base64 string...','type':'text'}], btns:['Decode'], handler:'b64dec'},
+    {id:'t5', title:'URL Encode', desc:'Percent-encode a string', fields:[{id:'in','placeholder':'Text or URL...','type':'text'}], btns:['Encode'], handler:'urlEnc'},
+    {id:'t6', title:'URL Decode', desc:'Decode percent-encoding', fields:[{id:'in','placeholder':'Encoded URL...','type':'text'}], btns:['Decode'], handler:'urlDec'},
+    {id:'t7', title:'Uppercase', desc:'Convert text to UPPERCASE', fields:[{id:'in','placeholder':'Text...','type':'text'}], btns:['Uppercase'], handler:'toUpper'},
+    {id:'t8', title:'Lowercase', desc:'Convert text to lowercase', fields:[{id:'in','placeholder':'Text...','type':'text'}], btns:['Lowercase'], handler:'toLower'},
+    {id:'t9', title:'Title Case', desc:'Convert to Title Case', fields:[{id:'in','placeholder':'Text...','type':'text'}], btns:['Title Case'], handler:'titleCase'},
+    {id:'t10', title:'Reverse Text', desc:'Reverse characters', fields:[{id:'in','placeholder':'Text...','type':'text'}], btns:['Reverse'], handler:'reverseText'},
+
+    // 11-20 Counters & cleaners
+    {id:'t11', title:'Word Counter', desc:'Count words', fields:[{id:'in','placeholder':'Paste text...','type':'textarea'}], btns:['Count'], handler:'wordCount'},
+    {id:'t12', title:'Character Counter', desc:'Count characters', fields:[{id:'in','placeholder':'Text...','type':'textarea'}], btns:['Count'], handler:'charCount'},
+    {id:'t13', title:'Remove Extra Spaces', desc:'Trim and collapse spaces', fields:[{id:'in','placeholder':'Text...','type':'textarea'}], btns:['Clean'], handler:'removeSpaces'},
+    {id:'t14', title:'Unique Lines', desc:'Keep unique lines', fields:[{id:'in','placeholder':'Lines...','type':'textarea'}], btns:['Unique'], handler:'uniqueLines'},
+    {id:'t15', title:'Sort Lines', desc:'Sort lines alphabetically', fields:[{id:'in','placeholder':'Lines...','type':'textarea'}], btns:['Sort'], handler:'sortLines'},
+    {id:'t16', title:'Line to CSV', desc:'Convert lines to comma list', fields:[{id:'in','placeholder':'Lines...','type':'textarea'}], btns:['Convert'], handler:'linesToCsv'},
+    {id:'t17', title:'CSV to Lines', desc:'Comma list to lines', fields:[{id:'in','placeholder':'a,b,c','type':'text'}], btns:['Convert'], handler:'csvToLines'},
+    {id:'t18', title:'Slugify', desc:'URL-friendly slug', fields:[{id:'in','placeholder':'Text title...','type':'text'}], btns:['Slugify'], handler:'slugify'},
+    {id:'t19', title:'Sentence Case', desc:'Capitalize sentences', fields:[{id:'in','placeholder':'Text...','type':'textarea'}], btns:['Convert'], handler:'sentenceCase'},
+    {id:'t20', title:'Remove Duplicates (CSV)', desc:'Unique comma-separated values', fields:[{id:'in','placeholder':'a,b,a,c','type':'text'}], btns:['Unique'], handler:'uniqueCSV'},
+
+    // 21-30 Numbers & lists
+    {id:'t21', title:'Calculator', desc:'Simple expression', fields:[{id:'in','placeholder':'(5+3)*2','type':'text'}], btns:['Calc'], handler:'calc'},
+    {id:'t22', title:'Random Integer', desc:'Random between min and max', fields:[{id:'min','placeholder':'Min','type':'text'},{id:'max','placeholder':'Max','type':'text'}], btns:['Generate'], handler:'randInt'},
+    {id:'t23', title:'Random Float', desc:'Random float between', fields:[{id:'min','placeholder':'Min','type':'text'},{id:'max','placeholder':'Max','type':'text'}], btns:['Generate'], handler:'randFloat'},
+    {id:'t24', title:'Number Sorter', desc:'Sort comma-separated numbers', fields:[{id:'in','placeholder':'3,1,2','type':'text'}], btns:['Sort'], handler:'sortNumbers'},
+    {id:'t25', title:'Sum Numbers', desc:'Sum comma-separated numbers', fields:[{id:'in','placeholder':'1,2,3','type':'text'}], btns:['Sum'], handler:'sumNumbers'},
+    {id:'t26', title:'Average', desc:'Average of numbers', fields:[{id:'in','placeholder':'1,2,3','type':'text'}], btns:['Average'], handler:'averageNums'},
+    {id:'t27', title:'Median', desc:'Median of numbers', fields:[{id:'in','placeholder':'1,2,3','type':'text'}], btns:['Median'], handler:'medianNums'},
+    {id:'t28', title:'Percent Calculator', desc:'Calculate percent value', fields:[{id:'value','placeholder':'Value','type':'text'},{id:'total','placeholder':'Total','type':'text'}], btns:['Calc'], handler:'percentCalc'},
+    {id:'t29', title:'Number to Words (EN)', desc:'Simple converter up to thousands', fields:[{id:'in','placeholder':'123','type':'text'}], btns:['Convert'], handler:'numToWords'},
+    {id:'t30', title:'Roman Numerals', desc:'To Roman (1..3999)', fields:[{id:'in','placeholder':'1999','type':'text'}], btns:['Convert'], handler:'toRoman'},
+
+    // 31-40 Dates & time
+    {id:'t31', title:'Timestamp → Date', desc:'Unix ms or sec to ISO', fields:[{id:'in','placeholder':'1660000000000','type':'text'}], btns:['Convert'], handler:'tsToDate'},
+    {id:'t32', title:'Date → Timestamp', desc:'Date to Unix ms', fields:[{id:'in','placeholder':'2025-01-01','type':'text'}], btns:['Convert'], handler:'dateToTs'},
+    {id:'t33', title:'Age Calculator', desc:'Calculate age from birthdate', fields:[{id:'in','placeholder':'YYYY-MM-DD','type':'text'}], btns:['Calculate'], handler:'ageCalc'},
+    {id:'t34', title:'Days Between Dates', desc:'Days difference', fields:[{id:'a','placeholder':'YYYY-MM-DD','type':'text'},{id:'b','placeholder':'YYYY-MM-DD','type':'text'}], btns:['Calc'], handler:'daysBetween'},
+    {id:'t35', title:'Add Days to Date', desc:'Add days', fields:[{id:'date','placeholder':'YYYY-MM-DD','type':'text'},{id:'days','placeholder':'Days','type':'text'}], btns:['Add'], handler:'addDays'},
+    {id:'t36', title:'Start/End of Month', desc:'Given YYYY-MM', fields:[{id:'in','placeholder':'2025-09','type':'text'}], btns:['Get'], handler:'monthRange'},
+    {id:'t37', title:'Weekday', desc:'Get weekday name', fields:[{id:'in','placeholder':'YYYY-MM-DD','type':'text'}], btns:['Get'], handler:'weekdayName'},
+    {id:'t38', title:'Now (ISO)', desc:'Get current date-time', fields:[], btns:['Now'], handler:'nowIso'},
+    {id:'t39', title:'Timer (seconds)', desc:'Simple countdown', fields:[{id:'sec','placeholder':'Seconds','type':'text'}], btns:['Start'], handler:'countdown'},
+    {id:'t40', title:'Stopwatch', desc:'Start/Stop/Reset', fields:[], btns:['Start/Stop','Reset'], handler:'stopwatch'},
+
+    // 41-50 Converters
+    {id:'t41', title:'cm ⇄ inch', desc:'Length convert', fields:[{id:'cm','placeholder':'cm','type':'text'},{id:'inch','placeholder':'inch','type':'text'}], btns:['cm→in','in→cm'], handler:'cmIn'},
+    {id:'t42', title:'kg ⇄ lb', desc:'Mass convert', fields:[{id:'kg','placeholder':'kg','type':'text'},{id:'lb','placeholder':'lb','type':'text'}], btns:['kg→lb','lb→kg'], handler:'kgLb'},
+    {id:'t43', title:'C ⇄ F', desc:'Temperature convert', fields:[{id:'c','placeholder':'°C','type':'text'},{id:'f','placeholder':'°F','type':'text'}], btns:['C→F','F→C'], handler:'tempCF'},
+    {id:'t44', title:'Bytes Convert', desc:'Human readable', fields:[{id:'in','placeholder':'Bytes','type':'text'}], btns:['Convert'], handler:'bytesConvert'},
+    {id:'t45', title:'Hex ⇄ RGB', desc:'Color conversions', fields:[{id:'hex','placeholder':'#RRGGBB','type':'text'},{id:'rgb','placeholder':'r,g,b','type':'text'}], btns:['Hex→RGB','RGB→Hex'], handler:'colorConv'},
+    {id:'t46', title:'Timezone Offset', desc:'UTC offset for hours', fields:[{id:'in','placeholder':'UTC offset e.g. +03:00','type':'text'}], btns:['Get'], handler:'tzOffset'},
+    {id:'t47', title:'Miles ⇄ Kilometers', desc:'Distance convert', fields:[{id:'mi','placeholder':'miles','type':'text'},{id:'km','placeholder':'km','type':'text'}], btns:['mi→km','km→mi'], handler:'miKm'},
+    {id:'t48', title:'Meters ⇄ Feet', desc:'Distance convert', fields:[{id:'m','placeholder':'meters','type':'text'},{id:'ft','placeholder':'feet','type':'text'}], btns:['m→ft','ft→m'], handler:'mFt'},
+    {id:'t49', title:'Liters ⇄ Gallons', desc:'Volume convert (US)', fields:[{id:'l','placeholder':'liters','type':'text'},{id:'gal','placeholder':'gallons','type':'text'}], btns:['L→gal','gal→L'], handler:'lGal'},
+    {id:'t50', title:'Radians ⇄ Degrees', desc:'Angle convert', fields:[{id:'deg','placeholder':'degrees','type':'text'},{id:'rad','placeholder':'radians','type':'text'}], btns:['deg→rad','rad→deg'], handler:'angleConv'},
+
+    // 51-60 Generators & random
+    {id:'t51', title:'Password Generator (12)', desc:'Random secure password', fields:[], btns:['Generate'], handler:'genPass12'},
+    {id:'t52', title:'Password Generator (24)', desc:'Long password', fields:[], btns:['Generate'], handler:'genPass24'},
+    {id:'t53', title:'UUID v4', desc:'Generate UUID', fields:[], btns:['Generate'], handler:'genUUID'},
+    {id:'t54', title:'Dice Roller', desc:'Roll NdM e.g. 2d6', fields:[{id:'in','placeholder':'NdM e.g. 2d6','type':'text'}], btns:['Roll'], handler:'diceRoll'},
+    {id:'t55', title:'Coin Flip', desc:'Heads or Tails', fields:[], btns:['Flip'], handler:'coinFlip'},
+    {id:'t56', title:'Random Color', desc:'Generate hex color', fields:[], btns:['Generate'], handler:'randColor'},
+    {id:'t57', title:'Lorem Ipsum', desc:'Generate paragraph(s)', fields:[{id:'n','placeholder':'Paragraphs (1-10)','type':'text'}], btns:['Generate'], handler:'lorem'},
+    {id:'t58', title:'Pronounceable Pass', desc:'Easier to remember', fields:[{id:'len','placeholder':'Length','type':'text'}], btns:['Generate'], handler:'pronounceable'},
+    {id:'t59', title:'Random Emoji', desc:'Pick an emoji', fields:[], btns:['Pick'], handler:'randEmoji'},
+    {id:'t60', title:'Color Palette', desc:'Generate palette from base color', fields:[{id:'hex','placeholder':'#RRGGBB','type':'text'}], btns:['Generate'], handler:'palette'},
+
+    // 61-70 Web & dev
+    {id:'t61', title:'HTML Escape', desc:'Escape HTML entities', fields:[{id:'in','placeholder':'Text...','type':'textarea'}], btns:['Escape'], handler:'htmlEscape'},
+    {id:'t62', title:'HTML Unescape', desc:'Unescape entities', fields:[{id:'in','placeholder':'Escaped...','type':'textarea'}], btns:['Unescape'], handler:'htmlUnescape'},
+    {id:'t63', title:'Regex Tester', desc:'Test regex against text', fields:[{id:'re','placeholder':'Regex','type':'text'},{id:'text','placeholder':'Input text','type':'textarea'}], btns:['Test'], handler:'regexTest'},
+    {id:'t64', title:'Query String → JSON', desc:'Parse query string', fields:[{id:'in','placeholder':'a=1&b=2','type':'text'}], btns:['Parse'], handler:'qsToJson'},
+    {id:'t65', title:'JSON → Query String', desc:'Build query string', fields:[{id:'in','placeholder':'{"a":1}','type':'textarea'}], btns:['Build'], handler:'jsonToQs'},
+    {id:'t66', title:'CSS Minifier', desc:'Simple minify remove comments/newlines', fields:[{id:'in','placeholder':'CSS...','type':'textarea'}], btns:['Minify'], handler:'cssMin'},
+    {id:'t67', title:'HTML Minifier', desc:'Simple minify', fields:[{id:'in','placeholder':'HTML...','type':'textarea'}], btns:['Minify'], handler:'htmlMin'},
+    {id:'t68', title:'Base64 Image → DataURL', desc:'Paste base64 string', fields:[{id:'in','placeholder':'base64 image payload','type':'text'}], btns:['To DataURL'], handler:'b64ToDataUrl'},
+    {id:'t69', title:'DataURL → Download', desc:'Create file from DataURL', fields:[{id:'in','placeholder':'data:*','type':'textarea'},{id:'name','placeholder':'filename','type':'text'}], btns:['Download'], handler:'downloadDataUrl'},
+    {id:'t70', title:'HTTP Header Viewer', desc:'Parse raw headers', fields:[{id:'in','placeholder':'Raw headers','type':'textarea'}], btns:['Parse'], handler:'parseHeaders'},
+
+    // 71-80 Images & media
+    {id:'t71', title:'Image Size (URL)', desc:'Get image natural size (CORS may block)', fields:[{id:'url','placeholder':'Image URL','type':'text'}], btns:['Get Size'], handler:'imgSize'},
+    {id:'t72', title:'DataURL → Image Preview', desc:'Preview data URL', fields:[{id:'in','placeholder':'data:*','type':'textarea'}], btns:['Preview'], handler:'previewDataUrl'},
+    {id:'t73', title:'YouTube ID Extractor', desc:'Extract video id', fields:[{id:'in','placeholder':'YouTube URL','type':'text'}], btns:['Extract'], handler:'ytId'},
+    {id:'t74', title:'Embed YouTube', desc:'Create embed URL', fields:[{id:'id','placeholder':'video id','type':'text'}], btns:['Embed'], handler:'ytEmbed'},
+    {id:'t75', title:'Image to Grayscale (client)', desc:'Basic canvas op (CORS limits)', fields:[{id:'url','placeholder':'Image URL','type':'text'}], btns:['To Gray'], handler:'imgGray'},
+    {id:'t76', title:'SVG Optimizer (simple)', desc:'Remove line breaks', fields:[{id:'in','placeholder':'SVG...','type':'textarea'}], btns:['Optimize'], handler:'svgOpt'},
+    {id:'t77', title:'Colorize Text (CSS)', desc:'Generate gradient CSS for text', fields:[{id:'text','placeholder':'Text...','type':'text'}], btns:['Generate'], handler:'gradText'},
+    {id:'t78', title:'Frame Rate Timer', desc:'Measure fps for short interval', fields:[], btns:['Measure'], handler:'fpsTest'},
+    {id:'t79', title:'Exif Date (not robust)', desc:'Extract DateTimeOriginal if present (limited)', fields:[{id:'url','placeholder':'Image URL','type':'text'}], btns:['Get'], handler:'exifDate'},
+    {id:'t80', title:'SVG to DataURL', desc:'Convert SVG text to data URL', fields:[{id:'in','placeholder':'<svg>...</svg>','type':'textarea'}], btns:['Convert'], handler:'svgToDataUrl'},
+
+    // 81-90 Health & misc
+    {id:'t81', title:'BMI Calculator', desc:'Body Mass Index', fields:[{id:'kg','placeholder':'kg','type':'text'},{id:'m','placeholder':'meters','type':'text'}], btns:['Calc'], handler:'bmi'},
+    {id:'t82', title:'Ideal Weight (Devine)', desc:'Devine formula', fields:[{id:'cm','placeholder':'Height cm','type':'text'},{id:'sex','placeholder':'male/female','type':'text'}], btns:['Calc'], handler:'idealWeight'},
+    {id:'t83', title:'Water Intake (approx)', desc:'ml/day by weight', fields:[{id:'kg','placeholder':'kg','type':'text'}], btns:['Calc'], handler:'waterIntake'},
+    {id:'t84', title:'Calorie Estimate', desc:'BMR estimate quick', fields:[{id:'kg','placeholder':'kg','type':'text'},{id:'cm','placeholder':'cm','type':'text'},{id:'age','placeholder':'age','type':'text'},{id:'sex','placeholder':'male/female','type':'text'}], btns:['Estimate'], handler:'bmr'},
+    {id:'t85', title:'Sleep Hours to Bed Time', desc:'Calculate bed time for wake time', fields:[{id:'wake','placeholder':'HH:MM','type':'text'},{id:'hours','placeholder':'sleep hours','type':'text'}], btns:['Calc'], handler:'bedTime'},
+    {id:'t86', title:'Currency Simple (manual)', desc:'Convert using rate', fields:[{id:'amt','placeholder':'amount','type':'text'},{id:'rate','placeholder':'rate (1->target)','type':'text'}], btns:['Convert'], handler:'curConvert'},
+    {id:'t87', title:'Hex Color Contrast', desc:'Check contrast light/dark', fields:[{id:'hex','placeholder':'#RRGGBB','type':'text'}], btns:['Check'], handler:'contrastCheck'},
+    {id:'t88', title:'Time to Read', desc:'Estimate reading minutes', fields:[{id:'text','placeholder':'Paste text...','type':'textarea'},{id:'wpm','placeholder':'words per minute','type':'text'}], btns:['Estimate'], handler:'readTime'},
+    {id:'t89', title:'Password Strength (basic)', desc:'Score password', fields:[{id:'pwd','placeholder':'password','type':'text'}], btns:['Check'], handler:'pwdStrength'},
+    {id:'t90', title:'Clipboard: Copy Text', desc:'Copy provided text to clipboard', fields:[{id:'in','placeholder':'Text to copy','type':'text'}], btns:['Copy'], handler:'copyText'},
+
+    // 91-100 Meta & helpers
+    {id:'t91', title:'User Agent Info', desc:'Show navigator.userAgent', fields:[], btns:['Show'], handler:'uaInfo'},
+    {id:'t92', title:'Local IP (WebRTC trick)', desc:'Try local IP discovery', fields:[], btns:['Discover'], handler:'localIp'},
+    {id:'t93', title:'Detect Mobile', desc:'Is mobile device?', fields:[], btns:['Detect'], handler:'isMobile'},
+    {id:'t94', title:'Encode HTML Entities', desc:'Encode', fields:[{id:'in','placeholder':'Text','type':'text'}], btns:['Encode'], handler:'encodeEntities'},
+    {id:'t95', title:'Decode HTML Entities', desc:'Decode', fields:[{id:'in','placeholder':'Text','type':'text'}], btns:['Decode'], handler:'decodeEntities'},
+    {id:'t96', title:'Generate Favicon DataURL', desc:'Simple SVG favicon', fields:[{id:'letter','placeholder':'Single letter','type':'text'}], btns:['Generate'], handler:'faviconDataUrl'},
+    {id:'t97', title:'QRCode Generator', desc:'Generate QR image', fields:[{id:'in','placeholder':'Text or URL','type':'text'}], btns:['Generate'], handler:'qrgenerate'},
+    {id:'t98', title:'Download Text File', desc:'Download string as file', fields:[{id:'in','placeholder':'text content','type':'textarea'},{id:'name','placeholder':'filename.txt','type':'text'}], btns:['Download'], handler:'downloadText'},
+    {id:'t99', title:'CSV to Table', desc:'Render CSV as table', fields:[{id:'in','placeholder':'a,b,c\\n1,2,3','type':'textarea'}], btns:['Render'], handler:'csvToTable'},
+    {id:'t100', title:'Show All Tool Names', desc:'List available tools', fields:[], btns:['List'], handler:'listTools'}
+  ];
+
+  // render tool cards
+  const container = document.getElementById('tools');
+  tools.forEach(t=>{
+    const card = document.createElement('div'); card.className='card'; card.id=t.id;
+    const title = document.createElement('h3'); title.textContent = t.title;
+    const desc = document.createElement('div'); desc.className='small'; desc.textContent = t.desc;
+    card.appendChild(title); card.appendChild(desc);
+    (t.fields||[]).forEach(f=>{
+      if(f.type==='textarea'){
+        const ta = document.createElement('textarea'); ta.className='input'; ta.placeholder=f.placeholder; ta.id=`${t.id}_${f.id}`; card.appendChild(ta);
+      } else {
+        const inp = document.createElement('input'); inp.className='input'; inp.placeholder=f.placeholder; inp.id=`${t.id}_${f.id}`; inp.type = f.type==='text'?'text':f.type; card.appendChild(inp);
       }
-    }
+    });
+    const actions = document.createElement('div'); actions.className='actions';
+    (t.btns||[]).forEach((b,idx)=>{
+      const but = document.createElement('button'); but.className='btn'; but.textContent=b;
+      but.addEventListener('click',()=>invokeHandler(t,b, idx));
+      actions.appendChild(but);
+    });
+    card.appendChild(actions);
+    const out = document.createElement('div'); out.className='out'; out.id=`${t.id}_out`; out.textContent='';
+    // copy button for outputs
+    const copyBtn = document.createElement('button'); copyBtn.className='btn'; copyBtn.style.marginLeft='8px'; copyBtn.textContent='Copy'; copyBtn.addEventListener('click',()=>copyOut(out.id));
+    const ctrl = document.createElement('div'); ctrl.style.display='flex'; ctrl.style.gap='8px'; ctrl.style.marginTop='8px';
+    ctrl.appendChild(copyBtn);
+    card.appendChild(ctrl); card.appendChild(out);
+    container.appendChild(card);
+  });
 
-    // Base64
-    function encodeB64() {
-      const txt = document.getElementById('b64Input').value;
-      document.getElementById('b64Output').textContent = btoa(txt);
-    }
-    function decodeB64() {
-      try {
-        const txt = document.getElementById('b64Input').value;
-        document.getElementById('b64Output').textContent = atob(txt);
-      } catch {
-        document.getElementById('b64Output').textContent = "Invalid Base64!";
-      }
-    }
+  // copy helper
+  function copyOut(id){
+    const el = document.getElementById(id); if(!el) return;
+    navigator.clipboard?.writeText(el.innerText).then(()=>{el.innerText += '\n\n[copied]'; setTimeout(()=>el.innerText=el.innerText.replace(/\n\n\[copied\]$/,''),900);}).catch(()=>alert('Clipboard denied'));
+  }
 
-    // QR Code
-    function makeQR() {
-      const text = document.getElementById('qrInput').value;
-      const qr = new QRious({ element: document.createElement('canvas'), value: text, size: 200 });
-      document.getElementById('qrOutput').innerHTML = "";
-      document.getElementById('qrOutput').appendChild(qr.element);
-    }
+  // handler invoker
+  function invokeHandler(tool, btnLabel, btnIndex){
+    try{
+      const fn = handlers[tool.handler];
+      if(!fn) { document.getElementById(`${tool.id}_out`).innerText = 'Handler not implemented'; return; }
+      const fieldEls = (tool.fields||[]).map(f=>document.getElementById(`${tool.id}_${f.id}`));
+      const args = fieldEls.map(e=>e?e.value:'');
+      const res = fn(...args, {toolId:tool.id,btn:btnLabel,btnIndex});
+      Promise.resolve(res).then(v=>{
+        document.getElementById(`${tool.id}_out`).innerText = (v===undefined||v===null)?'':String(v);
+      }).catch(e=>{document.getElementById(`${tool.id}_out`).innerText = 'Error: '+e.message});
+    }catch(e){document.getElementById(`${tool.id}_out`).innerText = 'Error: '+e.message}
+  }
 
-    // Password generator
-    function genPassword() {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
-      let pass = "";
-      for (let i = 0; i < 12; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
-      document.getElementById('pwdOutput').textContent = pass;
-    }
+  // common helpers
+  function safeJsonParse(s){ try{ return JSON.parse(s); }catch(e){throw new Error('Invalid JSON');} }
+  function pretty(obj){ return JSON.stringify(obj,null,2); }
+  function copyText(t){ navigator.clipboard?.writeText(t).catch(()=>{}); }
 
-    // Unit converter
-    function toInch() {
-      const cm = parseFloat(document.getElementById('cmInput').value);
-      if(!isNaN(cm)) document.getElementById('convOutput').textContent = (cm / 2.54).toFixed(2) + " inch";
-    }
-    function toCm() {
-      const inch = parseFloat(document.getElementById('inchInput').value);
-      if(!isNaN(inch)) document.getElementById('convOutput').textContent = (inch * 2.54).toFixed(2) + " cm";
-    }
+  // handlers
+  const handlers = {
+    // 1-10
+    jsonPretty: (txt)=> { const o = safeJsonParse(txt); return pretty(o); },
+    jsonMinify: (txt)=> { const o = safeJsonParse(txt); return JSON.stringify(o); },
+    b64enc: (txt)=> btoa(unescape(encodeURIComponent(txt))),
+    b64dec: (txt)=> decodeURIComponent(escape(atob(txt))),
+    urlEnc: (txt)=> encodeURIComponent(txt),
+    urlDec: (txt)=> decodeURIComponent(txt),
+    toUpper: (txt)=> txt.toUpperCase(),
+    toLower: (txt)=> txt.toLowerCase(),
+    titleCase: (txt)=> txt.replace(/\w\S*/g, w=>w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()),
+    reverseText: (txt)=> txt.split('').reverse().join(''),
 
-    // Calculator
-    function calc() {
-      try {
-        const exp = document.getElementById('calcExp').value;
-        const res = Function('return ' + exp)();
-        document.getElementById('calcOutput').textContent = res;
-      } catch {
-        document.getElementById('calcOutput').textContent = "Invalid expression!";
-      }
-    }
+    // 11-20
+    wordCount: (txt)=> { if(!txt||!txt.trim()) return 'Words: 0'; const w = txt.trim().split(/\s+/).filter(Boolean).length; return 'Words: '+w; },
+    charCount: (txt)=> 'Chars: '+(txt?txt.length:0),
+    removeSpaces: (txt)=> txt.replace(/\s+/g,' ').trim(),
+    uniqueLines: (txt)=> txt.split(/\r?\n/).filter(Boolean).filter((v,i,arr)=>arr.indexOf(v)===i).join('\n'),
+    sortLines: (txt)=> txt.split(/\r?\n/).sort().join('\n'),
+    linesToCsv: (txt)=> txt.split(/\r?\n/).filter(Boolean).map(s=>s.trim()).join(','),
+    csvToLines: (txt)=> txt.split(',').map(s=>s.trim()).join('\n'),
+    slugify: (txt)=> txt.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''),
+    sentenceCase: (txt)=> txt.replace(/(?:^|[.!?]\s+)([a-z])/g,(m,ch)=>m.replace(ch,ch.toUpperCase())),
+    uniqueCSV: (txt)=> Array.from(new Set(txt.split(',').map(s=>s.trim()).filter(Boolean))).join(','),
+    
+    // 21-30 numbers
+    calc: (exp)=> { try{ return Function('"use strict"; return ('+exp+')')(); }catch(e){ throw new Error('Invalid expression'); } },
+    randInt: (min,max)=> { min=Number(min)||0; max=Number(max)||0; if(max<min) [min,max]=[max,min]; return Math.floor(Math.random()*(max-min+1))+min; },
+    randFloat: (min,max)=> { min=Number(min)||0; max=Number(max)||1; return (Math.random()*(max-min)+min).toString(); },
+    sortNumbers: (txt)=> txt.split(',').map(n=>parseFloat(n)).filter(n=>!isNaN(n)).sort((a,b)=>a-b).join(','),
+    sumNumbers: (txt)=> txt.split(',').map(n=>parseFloat(n)||0).reduce((a,b)=>a+b,0),
+    averageNums: (txt)=> { const arr = txt.split(',').map(n=>parseFloat(n)).filter(n=>!isNaN(n)); return (arr.reduce((a,b)=>a+b,0)/arr.length)||0; },
+    medianNums: (txt)=> { const arr = txt.split(',').map(n=>parseFloat(n)).filter(n=>!isNaN(n)).sort((a,b)=>a-b); if(!arr.length) return 0; const m = Math.floor(arr.length/2); return arr.length%2?arr[m]:(arr[m-1]+arr[m])/2; },
+    percentCalc: (v,total)=> { v=Number(v)||0; total=Number(total)||1; return ((v/total)*100).toFixed(2)+'%'; },
+    numToWords: (n)=> { n=Number(n)||0; const small=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']; const tens=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety']; if(n<20) return small[n]; if(n<100) return tens[Math.floor(n/10)] + (n%10?'-'+small[n%10]:''); if(n<1000) return small[Math.floor(n/100)]+' hundred'+(n%100?' '+handlers.numToWords(n%100):''); return String(n); },
+    toRoman: (n)=>{ n=Number(n)||0; if(n<1||n>3999) return 'Out of range'; const vals=[1000,900,500,400,100,90,50,40,10,9,5,4,1]; const syms=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I']; let res=''; for(let i=0;i<vals.length;i++){ while(n>=vals[i]){ n-=vals[i]; res+=syms[i]; } } return res; },
 
-    // Subscribe
-    function subscribe() {
-      const email = document.getElementById('email').value;
-      const msg = document.getElementById('msg');
-      if(email.includes('@')) msg.textContent = "Thanks for subscribing!";
-      else msg.textContent = "Please enter a valid email.";
-    }
+    // 31-40 dates
+    tsToDate: (txt)=> { const n = Number(txt); if(isNaN(n)) throw new Error('Invalid timestamp'); const d = (txt.length>10)?new Date(n):new Date(n*1000); return d.toISOString(); },
+    dateToTs: (txt)=> { const d = new Date(txt); if(isNaN(d)) throw new Error('Invalid date'); return d.getTime(); },
+    ageCalc: (txt)=> { const d=new Date(txt); if(isNaN(d)) throw new Error('Invalid date'); const now=new Date(); let age=now.getFullYear()-d.getFullYear(); const m=now.getMonth()-d.getMonth(); if(m<0 || (m===0 && now.getDate()<d.getDate())) age--; return age; },
+    daysBetween: (a,b)=> { const da=new Date(a), db=new Date(b); if(isNaN(da)||isNaN(db)) throw new Error('Invalid date'); return Math.abs(Math.round((db-da)/(1000*60*60*24))); },
+    addDays: (date,days)=> { const d=new Date(date); if(isNaN(d)) throw new Error('Invalid date'); d.setDate(d.getDate()+Number(days||0)); return d.toISOString().slice(0,10); },
+    monthRange: (ym)=> { const [y,m]=ym.split('-').map(Number); if(!y||!m) throw new Error('Invalid'); const start=new Date(y,m-1,1); const end=new Date(y,m,0); return `${start.toISOString().slice(0,10)} → ${end.toISOString().slice(0,10)}`; },
+    weekdayName: (txt)=> { const d=new Date(txt); if(isNaN(d)) throw new Error('Invalid'); return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()]; },
+    nowIso: ()=> new Date().toISOString(),
+    countdown: (sec,opts)=> { const s=Number(sec)||0; let remaining=s; const id= setInterval(()=>{ document.getElementById('t39_out').innerText = 'Remaining: '+remaining+'s'; remaining--; if(remaining<0){ clearInterval(id); document.getElementById('t39_out').innerText='Done'; }},1000); return 'Started '+s+'s'; },
+    stopwatch: (cmd,opts)=> { // toggles start/stop via same button; reset via second
+      const out = document.getElementById('t40_out');
+      if(!window._sw) window._sw={running:false, start:0, elapsed:0, id:0};
+      if(cmd==='Start/Stop'){ if(!window._sw.running){ window._sw.running=true; window._sw.start=Date.now(); window._sw.id=setInterval(()=>{ window._sw.elapsed = Date.now()-window._sw.start; out.innerText = (window._sw.elapsed/1000).toFixed(2)+'s'; },50); return 'Started'; } else { clearInterval(window._sw.id); window._sw.running=false; window._sw.elapsed = Date.now()-window._sw.start; out.innerText = (window._sw.elapsed/1000).toFixed(2)+'s'; return 'Stopped'; } } else { clearInterval(window._sw.id); window._sw={running:false,start:0,elapsed:0,id:0}; out.innerText='0.00s'; return 'Reset'; }
+    },
+
+    // 41-50 converters
+    cmIn: (a,b,opts)=> { if(opts.btn==='cm→in'){ const cm=Number(a)||0; return (cm/2.54).toFixed(4)+' in'; } else { const inch=Number(b)||0; return (inch*2.54).toFixed(4)+' cm'; } },
+    kgLb: (a,b,opts)=> { if(opts.btn==='kg→lb'){ const kg=Number(a)||0; return (kg*2.20462).toFixed(4)+' lb'; } else { const lb=Number(b)||0; return (lb/2.20462).toFixed(4)+' kg'; } },
+    tempCF: (c,f,opts)=> { if(opts.btn==='C→F'){ const C=Number(c)||0; return ((C*9/5)+32).toFixed(2)+' °F'; } else { const F=Number(f)||0; return ((F-32)*5/9).toFixed(2)+' °C'; } },
+    bytesConvert: (txt)=> { let n=Number(txt)||0; const units=['B','KB','MB','GB','TB']; let i=0; while(n>=1024 && i<units.length-1){ n/=1024; i++; } return n.toFixed(2)+' '+units[i]; },
+    colorConv: (hex,rgb,opts)=> { if(opts.btn==='Hex→RGB'){ const h=hex.replace('#',''); if(h.length!==6) return 'Invalid'; const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16); return `${r}, ${g}, ${b}`; } else { const [r,g,b]=rgb.split(',').map(n=>Number(n)||0); return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join(''); } },
+    tzOffset: (txt)=> { return 'Offset minutes: '+(new Date().getTimezoneOffset())+' (client local)'; },
+    miKm: (mi,km,opts)=> { if(opts.btn==='mi→km'){ return (Number(mi||0)*1.60934).toFixed(4)+' km'; } else return (Number(km||0)/1.60934).toFixed(4)+' mi'; },
+    mFt: (m,ft,opts)=> { if(opts.btn==='m→ft') return (Number(m||0)*3.28084).toFixed(4)+' ft'; else return (Number(ft||0)/3.28084).toFixed(4)+' m'; },
+    lGal: (l,gal,opts)=> { if(opts.btn==='L→gal') return (Number(l||0)*0.264172).toFixed(4)+' gal'; else return (Number(gal||0)/0.264172).toFixed(4)+' L'; },
+    angleConv: (deg,rad,opts)=> { if(opts.btn==='deg→rad') return (Number(deg||0)*Math.PI/180).toFixed(6)+' rad'; else return (Number(rad||0)*180/Math.PI).toFixed(6)+' deg'; },
+
+    // 51-60 generators
+    genPass12: ()=> randomPassword(12),
+    genPass24: ()=> randomPassword(24),
+    genUUID: ()=> (crypto.randomUUID?crypto.randomUUID():([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16))),
+    diceRoll: (spec)=> { const m = (spec||'1d6').match(/(\d*)d(\d+)/); if(!m) return 'Invalid'; const n=Number(m[1])||1; const s=Number(m[2]); const rolls=[]; for(let i=0;i<n;i++) rolls.push(Math.floor(Math.random()*s)+1); return rolls.join(', ')+' (sum='+rolls.reduce((a,b)=>a+b,0)+')'; },
+    coinFlip: ()=> Math.random()<0.5?'Heads':'Tails',
+    randColor: ()=> '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'),
+    lorem: (n)=> { n = Math.max(1,Math.min(10,Number(n)||1)); const p = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.'; return Array.from({length:n},()=>p).join('\n\n'); },
+    pronounceable: (len)=> { len=Math.max(4,Math.min(32,Number(len)||8)); const syl='aeiountrls'; let s=''; for(let i=0;i<len;i++) s+=syl[Math.floor(Math.random()*syl.length)]; return s; },
+    randEmoji: ()=> { const set = ['😀','🚀','🔥','🌟','🎯','💡','⚙️','😎','🤖','🧭']; return set[Math.floor(Math.random()*set.length)]; },
+    palette: (hex)=> { const base=hex.replace('#',''); if(base.length!==6) return 'Invalid'; const r=parseInt(base.slice(0,2),16), g=parseInt(base.slice(2,4),16), b=parseInt(base.slice(4,6),16); const cols = [ [r,g,b], [Math.min(255,r+30),Math.min(255,g+30),Math.min(255,b+30)], [Math.max(0,r-30),Math.max(0,g-30),Math.max(0,b-30)], [255-r,255-g,255-b] ]; return cols.map(c=>'#'+c.map(x=>x.toString(16).padStart(2,'0')).join(' ')).join('\n'); },
+
+    // 61-70 web dev
+    htmlEscape: (txt)=> txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'),
+    htmlUnescape: (txt)=> txt.replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'),
+    regexTest: (re, text)=> { try{ const r = new RegExp(re); const found = text.match(r); return found?found.join(', '):'No match'; }catch(e){throw new Error('Invalid regex');} },
+    qsToJson: (txt)=> { const obj={}; txt.split('&').filter(Boolean).forEach(p=>{ const [k,v]=p.split('='); obj[decodeURIComponent(k)]=decodeURIComponent(v||''); }); return JSON.stringify(obj,null,2); },
+    jsonToQs: (txt)=> { const o = safeJsonParse(txt); return Object.keys(o).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(String(o[k]))).join('&'); },
+    cssMin: (txt)=> txt.replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s+/g,' ').replace(/\s*([{:;,+>})])\s*/g,'$1').trim(),
+    htmlMin: (txt)=> txt.replace(/\n+/g,'').replace(/\s{2,}/g,' ').trim(),
+    b64ToDataUrl: (txt)=> 'data:image/*;base64,'+txt,
+    downloadDataUrl: (dataUrl,name)=> { const a=document.createElement('a'); a.href=dataUrl; a.download = name||'file'; a.click(); return 'Download started'; },
+    parseHeaders: (txt)=> { const obj={}; txt.split(/\r?\n/).filter(Boolean).forEach(l=>{ const i=l.indexOf(':'); if(i>0) obj[l.slice(0,i).trim()]=l.slice(i+1).trim(); }); return JSON.stringify(obj,null,2); },
+
+    // 71-80 images
+    imgSize: (url)=> new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(`W:${i.naturalWidth} H:${i.naturalHeight}`); i.onerror=()=>rej(new Error('Load error or CORS')); i.src=url; }),
+    previewDataUrl: (data)=> { const w = window.open(''); w.document.write(`<img src="${data}" alt="preview">`); return 'Opened preview'; },
+    ytId: (txt)=> { const m = txt.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/); return m?m[1]:'Not found'; },
+    ytEmbed: (id)=> `https://www.youtube.com/embed/${id}`,
+    imgGray: (url)=> { return new Promise((res,rej)=>{ const img = new Image(); img.crossOrigin='Anonymous'; img.onload = ()=>{ const c=document.createElement('canvas'); c.width=img.width; c.height=img.height; const ctx=c.getContext('2d'); ctx.drawImage(img,0,0); const d=ctx.getImageData(0,0,c.width,c.height); for(let i=0;i<d.data.length;i+=4){ const g = 0.3*d.data[i]+0.59*d.data[i+1]+0.11*d.data[i+2]; d.data[i]=d.data[i+1]=d.data[i+2]=g; } ctx.putImageData(d,0,0); const out=c.toDataURL(); res(out); }; img.onerror=()=>rej(new Error('Load error or CORS')); img.src=url; }); },
+    svgOpt: (txt)=> txt.replace(/\n+/g,'').replace(/>\s+</g,'><').trim(),
+    gradText: (txt)=> `background:linear-gradient(90deg, ${randColor()}, ${randColor()}); -webkit-background-clip:text; color:transparent;`,
+    fpsTest: ()=> { return new Promise(res=>{ let frames=0, last=performance.now(); const id = requestAnimationFrame(function loop(){ frames++; if(performance.now()-last>1000){ const fps = frames; cancelAnimationFrame(id); res('FPS ~ '+fps); } else requestAnimationFrame(loop); }); }); },
+    exifDate: (url)=> 'Limited: EXIF requires parsing binary; use server-side or dedicated library.',
+    svgToDataUrl: (txt)=> 'data:image/svg+xml;utf8,'+encodeURIComponent(txt),
+
+    // 81-90 health & misc
+    bmi: (kg,m)=> { const bmi = Number(kg)/(Number(m)*Number(m)); return bmi?bmi.toFixed(2):'Invalid'; },
+    idealWeight: (cm,sex)=> { cm=Number(cm)||0; const heightIn = cm/2.54; const baseMale = 50 + 2.3*((heightIn/1)-60); const baseFemale = 45.5 + 2.3*((heightIn/1)-60); return (sex && sex.toLowerCase().startsWith('f'))?baseFemale.toFixed(1):baseMale.toFixed(1); },
+    waterIntake: (kg)=> { kg=Number(kg)||0; return Math.round(35*kg)+' ml/day (approx)'; },
+    bmr: (kg,cm,age,sex)=> { kg=Number(kg); cm=Number(cm); age=Number(age); if(sex.toLowerCase().startsWith('m')){ return Math.round(10*kg+6.25*cm-5*age+5); } else { return Math.round(10*kg+6.25*cm-5*age-161); } },
+    bedTime: (wake,hours)=> { const [hh,mm]=wake.split(':').map(Number); const date=new Date(); date.setHours(hh); date.setMinutes(mm||0); date.setHours(date.getHours()-Number(hours||8)); return date.toTimeString().slice(0,5); },
+    curConvert: (amt,rate)=> { return ((Number(amt)||0)* (Number(rate)||1)).toFixed(2); },
+    contrastCheck: (hex)=> { const h=hex.replace('#',''); if(h.length!==6) return 'Invalid'; const r=parseInt(h.slice(0,2),16), g=parseInt(h.slice(2,4),16), b=parseInt(h.slice(4,6),16); const lum = (0.2126*r + 0.7152*g + 0.0722*b)/255; return lum>0.5?'Use dark text':'Use light text'; },
+    readTime: (text,wpm)=> { const words = (text||'').trim().split(/\s+/).filter(Boolean).length; wpm = Number(wpm)||200; return Math.max(1,Math.ceil(words/wpm))+' min'; },
+    pwdStrength: (pwd)=> { let score=0; if(pwd.length>7) score++; if(/[A-Z]/.test(pwd)) score++; if(/[a-z]/.test(pwd)) score++; if(/[0-9]/.test(pwd)) score++; if(/[^A-Za-z0-9]/.test(pwd)) score++; return ['Very weak','Weak','Okay','Good','Strong','Very strong'][score]; },
+    copyText: (txt)=> { navigator.clipboard.writeText(txt||'').then(()=>{}).catch(()=>{}); return 'Copied (if allowed)'; },
+
+    // 91-100 helpers
+    uaInfo: ()=> navigator.userAgent,
+    localIp: ()=> { return new Promise((res,rej)=>{ // best-effort WebRTC local IP discovery (may be blocked)
+      const pc = new RTCPeerConnection({iceServers:[]}); pc.createDataChannel('');
+      pc.onicecandidate = e=>{ if(!e.candidate) return; const s = e.candidate.candidate; const m = s.match(/(\d{1,3}(?:\.\d{1,3}){3})/); if(m) { res(m[1]); pc.close(); } };
+      pc.createOffer().then(o=>pc.setLocalDescription(o)).catch(rej);
+      setTimeout(()=>res('Not found / blocked'),2000);
+    }); },
+    isMobile: ()=> /Mobi|Android|iPhone|iPad/.test(navigator.userAgent),
+    encodeEntities: (txt)=> handlers.htmlEscape(txt),
+    decodeEntities: (txt)=> handlers.htmlUnescape(txt),
+    faviconDataUrl: (letter)=> { const l=(letter||'Z')[0]||'Z'; const svg=`<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='100%' height='100%' rx='12' fill='#07162a'/><text x='50%' y='55%' font-size='36' text-anchor='middle' fill='${'#6ef0ff'}' font-family='Arial'>${l}</text></svg>`; return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg); },
+    qrgenerate: (txt)=> { const el = document.createElement('canvas'); new QRious({element:el,value:txt,size:200}); return el.toDataURL(); },
+    downloadText: (txt,name)=> { const a=document.createElement('a'); const blob=new Blob([txt||''],{type:'text/plain'}); a.href=URL.createObjectURL(blob); a.download = name||'file.txt'; a.click(); return 'Downloading'; },
+    csvToTable: (txt)=> { const rows = txt.split(/\r?\n/).filter(Boolean).map(r=>r.split(',')); let html='<table border="1" style="border-collapse:collapse;width:100%"><tbody>'; rows.forEach(r=>{ html+='<tr>'; r.forEach(c=>html+='<td style="padding:6px">'+c+'</td>'); html+='</tr>'; }); html+='</tbody></table>'; return html; },
+    listTools: ()=> tools.map(t=>t.title).join('\n')
+  };
+
+  // small helper functions
+  function randomPassword(len){ const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?'; let s=''; for(let i=0;i<len;i++) s+=chars.charAt(Math.floor(Math.random()*chars.length)); return s; }
+  function randColor(){ return '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'); }
+
+  // CSV-to-table requires outputting HTML; allow HTML for that tool
+  // when csvToTable returns HTML, inject as HTML
+  const origInvoke = invokeHandler;
+  function invokeHandler(tool, btnLabel, btnIndex){
+    try{
+      const fn = handlers[tool.handler];
+      if(!fn) { document.getElementById(`${tool.id}_out`).innerText = 'Handler not implemented'; return; }
+      const fieldEls = (tool.fields||[]).map(f=>document.getElementById(`${tool.id}_${f.id}`));
+      const args = fieldEls.map(e=>e?e.value:'');
+      const maybe = fn(...args, {toolId:tool.id,btn:btnLabel,btnIndex});
+      Promise.resolve(maybe).then(v=>{
+        const outEl = document.getElementById(`${tool.id}_out`);
+        if(tool.handler==='csvToTable'){ outEl.innerHTML = v; } else outEl.innerText = (v===undefined||v===null)?'':String(v);
+      }).catch(e=>{ document.getElementById(`${tool.id}_out`).innerText = 'Error: '+e.message; });
+    }catch(e){ document.getElementById(`${tool.id}_out`).innerText = 'Error: '+e.message; }
+  }
+
+  // override global reference used earlier
+  window.invokeHandler = invokeHandler;
+
+  // quick copy-all-html (exports current tools grid HTML)
+  document.getElementById('copyAll').addEventListener('click',()=>{
+    const html = document.documentElement.outerHTML;
+    navigator.clipboard?.writeText(html).then(()=>alert('Full page HTML copied to clipboard (large)').catch(()=>{})).catch(()=>alert('Copy denied'));
+  });
+
+  // small safety: show message if AdSense blocked in local
+  setTimeout(()=>{ if(typeof window.adsbygoogle==='undefined') console.log('AdSense may be blocked'); },2000);
   </script>
 </body>
-</html>
+  </html>
