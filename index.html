@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZNMP.UK – Technology & Cool Stuff</title>
+  <meta name="description" content="ZNMP.UK – technology, tools, and cool things.">
+  
+  <!-- AdSense script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5061269155394927"
+     crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --bg: #0a0f1f;
+      --card: #131a2c;
+      --accent: #00e5ff;
+      --text: #e6f1ff;
+      --muted: #9aa7c0;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      background: var(--card);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    nav a {
+      margin-left: 16px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #0a0f1f, #131a2c);
+    }
+    .hero h1 { font-size: 36px; margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: 18px; }
+    .btn {
+      margin-top: 10px;
+      background: var(--accent);
+      color: #000;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      border: none;
+    }
+    .content {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .card h2 { margin-top: 0; }
+    .ads {
+      margin: 20px 0;
+      text-align: center;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 8px;
+      border: none;
+      background: #1c2238;
+      color: var(--text);
+    }
+    .output {
+      padding: 10px;
+      background: #1c2238;
+      border-radius: 8px;
+      word-wrap: break-word;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: var(--muted);
+      background: var(--card);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ZNMP.UK</div>
+    <nav>
+      <a href="#tools">Tools</a>
+      <a href="#fun">Fun</a>
+      <a href="#subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to ZNMP.UK</h1>
+    <p>Technology, tools, and cool things you can actually use.</p>
+  </section>
+
+  <div class="content" id="tools">
+    <!-- Ad block -->
+    <div class="ads">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5061269155394927"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- JSON Formatter -->
+    <div class="card">
+      <h2>JSON Formatter</h2>
+      <textarea id="jsonInput" placeholder="Paste JSON here..."></textarea>
+      <button class="btn" onclick="formatJSON()">Format</button>
+      <pre class="output" id="jsonOutput"></pre>
+    </div>
+
+    <!-- Base64 -->
+    <div class="card">
+      <h2>Base64 Encoder / Decoder</h2>
+      <textarea id="b64Input" placeholder="Enter text..."></textarea>
+      <button class="btn" onclick="encodeB64()">Encode</button>
+      <button class="btn" onclick="decodeB64()">Decode</button>
+      <div class="output" id="b64Output"></div>
+    </div>
+
+    <!-- QR Code -->
+    <div class="card">
+      <h2>QR Code Generator</h2>
+      <input id="qrInput" placeholder="Enter text or URL...">
+      <button class="btn" onclick="makeQR()">Generate</button>
+      <div id="qrOutput" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- Random Password -->
+    <div class="card" id="fun">
+      <h2>Random Password Generator</h2>
+      <button class="btn" onclick="genPassword()">Generate Password</button>
+      <div class="output" id="pwdOutput"></div>
+    </div>
+
+    <!-- Unit Converter -->
+    <div class="card">
+      <h2>Unit Converter (cm ⇆ inch)</h2>
+      <input id="cmInput" placeholder="Enter cm">
+      <button class="btn" onclick="toInch()">Convert to Inch</button>
+      <input id="inchInput" placeholder="Enter inch">
+      <button class="btn" onclick="toCm()">Convert to cm</button>
+      <div class="output" id="convOutput"></div>
+    </div>
+
+    <!-- Simple Calculator -->
+    <div class="card">
+      <h2>Calculator</h2>
+      <input id="calcExp" placeholder="Enter expression e.g. (5+3)*2">
+      <button class="btn" onclick="calc()">Calculate</button>
+      <div class="output" id="calcOutput"></div>
+    </div>
+
+    <!-- Second Ad block -->
+    <div class="ads">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5061269155394927"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Subscribe -->
+    <div class="card" id="subscribe">
+      <h2>Subscribe</h2>
+      <p>Stay updated with the latest technology and cool stuff. Enter your email:</p>
+      <input type="email" id="email" placeholder="Your email">
+      <button class="btn" onclick="subscribe()">Subscribe</button>
+      <p id="msg" style="color:var(--accent);margin-top:10px;"></p>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 ZNMP.UK — All rights reserved.
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <script>
+    // JSON formatter
+    function formatJSON() {
+      try {
+        const obj = JSON.parse(document.getElementById('jsonInput').value);
+        document.getElementById('jsonOutput').textContent = JSON.stringify(obj, null, 2);
+      } catch {
+        document.getElementById('jsonOutput').textContent = "Invalid JSON!";
+      }
+    }
+
+    // Base64
+    function encodeB64() {
+      const txt = document.getElementById('b64Input').value;
+      document.getElementById('b64Output').textContent = btoa(txt);
+    }
+    function decodeB64() {
+      try {
+        const txt = document.getElementById('b64Input').value;
+        document.getElementById('b64Output').textContent = atob(txt);
+      } catch {
+        document.getElementById('b64Output').textContent = "Invalid Base64!";
+      }
+    }
+
+    // QR Code
+    function makeQR() {
+      const text = document.getElementById('qrInput').value;
+      const qr = new QRious({ element: document.createElement('canvas'), value: text, size: 200 });
+      document.getElementById('qrOutput').innerHTML = "";
+      document.getElementById('qrOutput').appendChild(qr.element);
+    }
+
+    // Password generator
+    function genPassword() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+      let pass = "";
+      for (let i = 0; i < 12; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
+      document.getElementById('pwdOutput').textContent = pass;
+    }
+
+    // Unit converter
+    function toInch() {
+      const cm = parseFloat(document.getElementById('cmInput').value);
+      if(!isNaN(cm)) document.getElementById('convOutput').textContent = (cm / 2.54).toFixed(2) + " inch";
+    }
+    function toCm() {
+      const inch = parseFloat(document.getElementById('inchInput').value);
+      if(!isNaN(inch)) document.getElementById('convOutput').textContent = (inch * 2.54).toFixed(2) + " cm";
+    }
+
+    // Calculator
+    function calc() {
+      try {
+        const exp = document.getElementById('calcExp').value;
+        const res = Function('return ' + exp)();
+        document.getElementById('calcOutput').textContent = res;
+      } catch {
+        document.getElementById('calcOutput').textContent = "Invalid expression!";
+      }
+    }
+
+    // Subscribe
+    function subscribe() {
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('msg');
+      if(email.includes('@')) msg.textContent = "Thanks for subscribing!";
+      else msg.textContent = "Please enter a valid email.";
+    }
+  </script>
+</body>
+</html>
